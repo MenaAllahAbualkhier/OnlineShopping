@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OnlineShopping.BL.Model.ItemVM>
+@inject OnlineShopping.BL.Interface.IUnitOfWork project
+@{
+    ViewData["Title"] = "Index";
+    int SubId = ViewBag.SubId;
+  
+}
+
+<!-- Recent Sales -->
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+        <div class="card-body">
+            <h5 class="card-title">@project.SubCategory.GetById(a => a.Id == SubId).Name</h5>
+            
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Descrption</th>
+                        <th scope="col">price</th>
+                        <th scope="col">discount</th>
+                        <th scope="col">price after discount </th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var item in Model)
+                   {
+                        var x = item.price - item.discount;
+                        <tr>
+                            <td ><img src="~/Item/@item.ImageName" width="125"></td>
+                            <td>@item.Name</td>
+                            <td>@item.Descrption</td>
+                            <td>@item.price</td>
+                            <td>@item.discount</td>
+                            <td>@x</td>
+                            <td>@item.Count</td>
+                            <td>
+                                
+                                <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Edit" asp-controller="Item" asp-route-Id="@item.Id">
+                                    <i class="bi bi-caret-right-square-fill"></i>
+                                    Edit
+                                </a>
+                                <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Delete" asp-controller="Item" asp-route-Id="@item.Id">
+                                    <i class="bi bi-caret-right-square-fill"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div><!-- End Recent Sales -->
+<a class="btn btn-primary " asp-action="Create" asp-controller="Item" asp-route-SubId="@SubId">
+    <i class="bi bi-plus-square-fill mt-5"></i> Add New Item
+</a>
+<a class="btn btn-primary " asp-action="Index" asp-controller="SubCategory" asp-route-Id="@project.SubCategory.GetById(a => a.Id == SubId).CategoryId">
+    <i class="bi bi-plus-square-fill mt-5"></i> Back To Data
+</a>

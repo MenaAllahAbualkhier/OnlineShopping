@@ -1,0 +1,101 @@
+﻿@model IEnumerable<OnlineShopping.BL.Model.CartVM>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    double TotalCart = 0;
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @{
+                        if (Model != null)
+                        {
+                           
+                            foreach (var item in Model)
+                            {
+                                
+                                double afterdiscount = item.Item.price - item.Item.discount;
+                                
+                               
+                                <tr>
+                                    <td class="align-middle">
+                                        <img src="~/Item/@item.Item.ImageName" alt="" style="width: 50px;">
+                                        @item.Item.Name
+                                    </td>
+                                    <td class="align-middle">@afterdiscount</td>
+                                      
+                                    @if(item.Quantity>item.Item.Count){
+                                        @if(item.Item.Count==0)
+                                        {
+                                            <td>@item.Item.Count !<span> Not Avaliable Item </span></td>
+                                        } 
+                                        else
+                                        {
+                                            <td>@item.Item.Count !<span>Avaliable Item is :@item.Item.Count</span></td>
+                                            double totalprice = afterdiscount * Convert.ToDouble(item.Item.Count);
+                                            <td class="align-middle">@totalprice</td>
+                                            TotalCart += totalprice;
+                                        }
+                                    }
+                                    
+                                    else{
+                                        <td>@item.Quantity</td>
+                                        double totalprice = afterdiscount * Convert.ToDouble(item.Quantity);
+                                        <td class="align-middle">@totalprice</td>
+                                        TotalCart += totalprice;
+                                    }
+                                    
+                                    <td class="align-middle">
+                                    <a class="btn btn-sm btn-danger"asp-action="DeleteItem" asp-route-Id="@item.Item.Id">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-30" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+            <div class="bg-light p-30 mb-5">
+                
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5 >@TotalCart</h5>
+                        
+                    </div>
+                    <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" asp-action="Order">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    @if (TempData["mes"] !=null){
+    <div>@TempData["mes"]</div>
+    }

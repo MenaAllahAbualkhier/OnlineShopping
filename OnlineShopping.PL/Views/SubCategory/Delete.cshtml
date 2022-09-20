@@ -1,0 +1,65 @@
+﻿@model OnlineShopping.BL.Model.SubCategoryVM
+@{
+    ViewData["Title"] = "DeleteSubCategory";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Delete SubCategory</h5>
+
+        <!-- General Form Elements -->
+        <form asp-action="Delete" asp-controller="SubCategory">
+            <div asp-validation-summary="All"></div>
+            <div class="row mb-3">
+                <label asp-for="Id" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Id" >
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Name" >
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="CategoryId" class="col-sm-2 col-form-label">CategoryId</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="CategoryId" >
+                </div>
+            </div>
+            
+
+            <div class="row mb-3">
+                <label asp-for="Image" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <img src="~/Sub-Item/@Model.ImageName" width="175" />
+                    <input type="hidden" class="form-control" asp-for="ImageName">
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Sub Category Item</label>
+                <div class="col-sm-10">
+                    <select class="form-select" aria-label="multiple select example" asp-for="@Model.Item">
+                        @foreach (var item in Model.Item)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 text-center">
+                <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Delete">
+                    <a asp-action="Index" asp-controller="SubCategory" class="btn btn-secondary" asp-route-Id="@Model.CategoryId">Bake To Data</a>
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
+    </div>
+</div>

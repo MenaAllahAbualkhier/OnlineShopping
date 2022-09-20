@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OnlineShopping.BL.Model.SubCategoryVM>
+
+@{
+    ViewData["Title"] = "Index";
+    var category = ViewBag.category;
+    var x = 0;
+}
+
+
+
+
+<h1 class="mb-3">SubCategories</h1>
+<a class="btn btn-primary" asp-action="Create" asp-controller="SubCategory" asp-route-category="@category">
+    <i class="bi bi-plus-square-fill mt-5" ></i> Add New SubCategories
+</a>
+
+<table class="table table-bordered border-primary mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th> 
+            <th scope="col">Item</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+            x = x + 1;
+            <tr>
+                <th scope="row">@x</th>
+                <td><img src="~/Sub-Item/@item.ImageName" width="125"></td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Details" asp-controller="SubCategory" asp-route-Id="@item.Id">
+                        <i class="bi bi-caret-right-square-fill "></i>
+                        Details
+                    </a>
+                    <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Edit" asp-controller="SubCategory" asp-route-Id="@item.Id">
+                        <i class="bi bi-caret-right-square-fill"></i>
+                        Edit
+                    </a>
+                    <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Delete" asp-controller="SubCategory" asp-route-Id="@item.Id">
+                        <i class="bi bi-caret-right-square-fill"></i>
+                        Delete
+                    </a>
+                </td>
+                <td>
+                    <a class="me-3" style="color:#4154f1;cursor: pointer;" asp-action="Index" asp-controller="Item" asp-route-Id="@item.Id">
+                        <i class="bi bi-caret-right-square-fill"></i>
+                        Item
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

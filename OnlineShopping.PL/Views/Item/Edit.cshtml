@@ -1,0 +1,75 @@
+﻿@model OnlineShopping.BL.Model.ItemVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Edit Item</h5>
+
+        <!-- Vertical Form -->
+        <form class="row g-3" asp-action="Edit" asp-controller="Item" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            <div class="col-12">
+                <input asp-for="Id" type="hidden" class="form-control">
+            </div>
+            <div class="col-12">
+                <label asp-for="Name" class="form-label">SubCategory Name</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Descrption" class="form-label">price</label>
+                <input asp-for="Descrption" type="text" class="form-control">
+                <span asp-validation-for="Descrption" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="price" class="form-label">price</label>
+                <input asp-for="price" type="number" class="form-control">
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="discount" class="form-label">price</label>
+                <input asp-for="discount" type="number" class="form-control">
+                <span asp-validation-for="discount" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <label asp-for="Count" class="form-label">Count</label>
+                <input asp-for="Count" type="number" class="form-control">
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <img src="~/Item/@Model.ImageName" width="200" /><br />
+                <label asp-for="Image" class="form-label">Image </label>
+                <input asp-for="Image" type="File" class="form-control">
+            </div>
+
+            <input type="hidden" asp-for="SubCategoryId" />
+            <input type="hidden" asp-for="ImageName" />
+
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <a class="btn btn-secondary" asp-action="Index" asp-controller="Category">Back To Data</a>
+            </div>
+        </form><!-- Vertical Form -->
+
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+
+
+
+

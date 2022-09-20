@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OnlineShopping.BL.Model.ItemVM>
+
+@{
+    ViewData["Title"] = "Item";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Products</span></h2>
+    <div class="row px-xl-5">
+
+
+        @foreach (var item in Model)
+        {
+            var x = item.price - item.discount;
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <a asp-action="Details" asp-route-Id="@item.Id">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden card">
+                            <img class="img-fluid card-img-top " style="height:350px" src="~/Item/@item.ImageName" alt="">
+
+                        </div>
+                        <div class="text-center py-4">
+                            <div class="text-center py-4">
+                                <label  class="h6 text-decoration-none text-truncate">@item.Name</label>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>@x</h5><h6 class="text-muted ml-2"><del>@item.price</del></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small>(99)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+
+       
+    </div>
+</div>

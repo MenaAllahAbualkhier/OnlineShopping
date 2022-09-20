@@ -1,0 +1,53 @@
+﻿@model OnlineShopping.BL.Model.CategoryVM
+
+@{
+    ViewData["Title"] = "DetailsCategory";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Details Category</h5>
+
+        <!-- General Form Elements -->
+        <form >
+            <div class="row mb-3">
+                <label asp-for="Id" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" asp-for="Id" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Name" disabled>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Sub Category</label>
+                <div class="col-sm-10">
+                    <select class="form-select" aria-label="multiple select example" asp-for="@Model.SubCategory">
+                        @foreach (var item in Model.SubCategory)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 text-center">
+                <div class="col-sm-10">
+                   
+                    <a asp-action="Index" asp-controller="Category" class="btn btn-secondary">Bake To Data</a>
+                    <a asp-action="DeleteCategory" asp-controller="Category" asp-route-Id="@Model.Id" class="btn btn-secondary">Delete</a>
+                    <a asp-action="EditCategory" asp-controller="Category" asp-route-Id="@Model.Id" class="btn btn-secondary">Update</a>
+
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
+    </div>
+</div>

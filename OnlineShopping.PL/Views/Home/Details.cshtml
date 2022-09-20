@@ -1,0 +1,48 @@
+﻿@model OnlineShopping.BL.Model.ItemVM 
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-5 mb-30">
+           
+                        <img class="w-100 h-100" src="~/Item/@Model.ImageName" alt="Image">
+                   
+        </div>
+
+        <div class="col-lg-7 h-auto mb-30">
+            <div class="h-100 bg-light p-30">
+                <h3>@Model.Name</h3>
+                <div class="d-flex mb-3">
+                    <div class="text-primary mr-2">
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star-half-alt"></small>
+                        <small class="far fa-star"></small>
+                    </div>
+                    <small class="pt-1">(99 Reviews)</small>
+                </div>
+                <h3 class="font-weight-semi-bold mb-4">Price:@Model.price</h3>
+                @{
+                    var x = Model.price - Model.discount;
+                }
+                <h3 class="font-weight-semi-bold mb-4">after discount:@x</h3>
+                <p class="mb-4">
+                   @Model.Descrption
+                </p>
+                <label asp-for="@Model.Count">Count</label>
+                <input type="number" max="@Model.Count" min="0" value="1" />
+                    <button class="btn btn-primary px-3">
+                        <i class="fa fa-shopping-cart mr-1"></i> Add To
+                        Cart
+                    </button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    
+    </div>
+

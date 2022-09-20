@@ -1,0 +1,78 @@
+﻿@model OnlineShopping.BL.Model.ItemVM
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Delete Item</h5>
+
+        <!-- General Form Elements -->
+        <form asp-action="Delete" asp-controller="Item">
+            <div asp-validation-summary="All"></div>
+            <div class="row mb-3">
+                <label asp-for="Id" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Id" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Name" disabled>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label asp-for="Descrption" class="col-sm-2 col-form-label">Descrption</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Descrption" disabled>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="price" class="col-sm-2 col-form-label">price</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" asp-for="price" disabled>
+                </div>
+            </div>
+           
+            <div class="row mb-3">
+                <label asp-for="discount" class="col-sm-2 col-form-label">discount</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" asp-for="discount" disabled>
+                </div>
+            </div>
+
+            
+            <div class="row mb-3">
+                <label asp-for="Count" class="col-sm-2 col-form-label">Count</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" asp-for="Count" disabled>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="Image" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                    <img src="~/Item/@Model.ImageName" width="175" />
+                    <input type="hidden" class="form-control" asp-for="ImageName" >
+                    <input type="hidden" class="form-control" asp-for="SubCategoryId">
+
+                </div>
+            </div>
+
+
+
+            <div class="row mb-3 text-center">
+                <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Delete">
+                    <a asp-action="Index" asp-controller="SubCategory" class="btn btn-secondary" asp-route-Id="@Model.SubCategoryId">Bake To Data</a>
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
+    </div>
+</div>

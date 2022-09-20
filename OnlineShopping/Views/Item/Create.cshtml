@@ -1,0 +1,65 @@
+﻿@model OnlineShopping.BL.Model.ItemVM
+@{
+    ViewData["Title"] = "Create";
+    int SubId = ViewBag.SubId;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"> Create New Item</h5>
+
+        <!-- Vertical Form -->
+        <form class="row g-3" asp-action="Create" asp-controller="Item" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            <div class="col-12">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="Descrption" class="form-label">Descrption</label>
+                <input asp-for="Descrption" type="text" class="form-control">
+                <span asp-validation-for="Descrption" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="price" class="form-label">price</label>
+                <input asp-for="price" type="number" class="form-control">
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <label asp-for="discount" class="form-label">discount</label>
+                <input asp-for="discount" type="number" class="form-control">
+                <span asp-validation-for="discount" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Count" class="form-label">Count</label>
+                <input asp-for="Count" type="number" class="form-control">
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Image" class="form-label">Image </label>
+                <input asp-for="Image" type="File" class="form-control">
+
+            </div>
+            <input asp-for="SubCategoryId" type="hidden" value="@SubId" class="form-control">
+
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Create">
+                <a class="btn btn-secondary" asp-action="Index" asp-controller="Item"asp-route-Id="@SubId"
+                >Back To Data</a>
+            </div>
+        </form><!-- Vertical Form -->
+
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
